@@ -1,16 +1,20 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+import cv2
+from PIL import Image, ImageChops
+import numpy as np
 
 
-# Press the green button in the gutter to run the script.
+def main():
+    original: Image.Image = Image.open("images/edited.jpg")
+    edited: Image.Image = Image.open("images/org.jpg")
+
+    diff = ImageChops.difference(original, edited)
+    gray_scale = diff.convert('LA')
+
+    threshold = 25
+    mask = gray_scale.point(lambda p: p > threshold and 255)
+    mask.show()
+
+
+
 if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    main()
