@@ -15,11 +15,19 @@ def main():
     closing = cv.morphologyEx(thresh1, cv.MORPH_CLOSE, kernel)
     canny_contour = cv.Canny(closing, 150, 200)
 
-    cv.imshow("Output", thresh1)
-    cv.waitKey(0)
-    cv.imshow("Output", closing)
-    cv.waitKey(0)
-    cv.imshow("Output", canny_contour)
+    contours, hierarchy = cv.findContours(canny_contour, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE)
+
+    cnt = contours[5]
+
+
+    valid_contours = []
+    for contour in contours:
+        area = cv.contourArea(contour)
+        if area > 500:
+            valid_contours.append(contour)
+
+    cv.drawContours(grinch, valid_contours, -1, (0, 255, 0), 1)
+    cv.imshow("Output", grinch)
     cv.waitKey(0)
 
 
