@@ -13,7 +13,7 @@ def main():
     threshold = 25
     mask = gray_scale.point(lambda p: p > threshold and 255)
     mask.show()
-
+    print("123")
 
 
 if __name__ == '__main__':
