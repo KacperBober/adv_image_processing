@@ -9,8 +9,17 @@ def main():
 
     grinch = cv.absdiff(original, edited)
     grey_grinch = cv.cvtColor(grinch, cv.COLOR_BGR2GRAY)
+    ret, thresh1 = cv.threshold(grey_grinch, 30, 255, cv.THRESH_BINARY)
 
-    cv.imshow("Output", grey_grinch)
+    kernel = np.ones((5, 5), np.uint8)
+    closing = cv.morphologyEx(thresh1, cv.MORPH_CLOSE, kernel)
+    canny_contour = cv.Canny(closing, 150, 200)
+
+    cv.imshow("Output", thresh1)
+    cv.waitKey(0)
+    cv.imshow("Output", closing)
+    cv.waitKey(0)
+    cv.imshow("Output", canny_contour)
     cv.waitKey(0)
 
 
