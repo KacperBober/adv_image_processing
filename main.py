@@ -1,5 +1,10 @@
 # Do poprawnego działania programu zdjęcia powinny znajdować się w tym samym folderze co plik .py
 # W tym projekcie udało mi się zrealizować
+# * Otoczenie obiektu bounding box’em (1 pkt)
+# * Wycięcie bounding box’a (1 pkt)
+# * usunięcie tła dookoła obiektu (3 pkt).
+# można odkomentować linie 90, żeby grinche zapisały się jako png, aby zobaczyć brak tła.
+# samo otaczanie obiektów bounding boxem i usunięcie tła dookoła obiektu według mnie działa dokładnie.
 
 import cv2 as cv
 import numpy as np
